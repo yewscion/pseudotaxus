@@ -1,8 +1,102 @@
-EAdd. Exp ::= Exp "+" Exp1;
-ESub. Exp ::= Exp "-" Exp1;
-EMul. Exp1 ::= Exp1 "*" Exp2;
-EDiv. Exp1 ::= Exp1 "/" Exp2;
-EInt. Exp2 ::= Integer;
+token Var (upper (letter | digit)+);
+token Proc {"["} (letter)+ {"]"};
+terminator Stm ".";
+terminator Exp "";
+Fun. Function ::= [Stm];
+SExp.  Stm ::= Keyword [Exp];
+-- SKey.  Stm ::= Keyword;
 
-coercions Exp 2;
+EVar.  Exp ::= Var;
+EProc.  Exp ::= Proc;
+EStr. Exp ::= String;
+EKey. Exp3 ::= Keyword;
+ERead. Exp1 ::= "read" Var "from" Constant;
 
+rules Keyword ::=
+-- Input
+"read" | "obtain" | "get" | "from" | "take" | "use" | "copy" |
+-- Output
+"print" | "display" | "show" | "save" | "return" |
+-- Compute
+"compute" | "calculate" | "determine" | "append" | "to" | "over" |
+-- Initialize
+"set" | "initialize" | "init" | "let" | "is" | "has" | "contains" | "be" |
+-- Deviation
+"increment" | "bump" | "decrement" |
+-- Branching
+"if" | "then" | "else" | "otherwise" | "when" | "unless" |
+-- While
+"while" | "done" | "endwhile" | "do" |
+-- Case
+"case" | "of" | "others" | "endcase" |
+-- Repeat
+"repeat" | "until" |
+-- For
+"for" | "endfor" |
+-- Program Flow
+"call" | "exception" | "as" | "recurse" |
+-- Selectors
+"this" | "that" | "except" | "in" | "at" | "with" | "without" | "aside" |
+-- Type Ops
+"convert" | "cast" | "ensure" | "expecting" | "expect";               
+rules Constant ::=
+-- Booleans
+"true" | "false" |
+-- Unbound
+"nonexistant" | "unbound" | "missing" | "null" |
+-- Status
+"success" | "failure" | "succeeds" | "fails" | "found" |
+-- Formatting
+"newline" | "beep" | "indent" |
+-- Assumptions
+"user" | "screen" | "system";
+rules DataType ::=
+-- Basics
+"number" | "string" | "character" | "boolean" |
+-- Extended Boolean
+"truthy" | "falsey" |
+-- Collections
+"list" | "array" | "sequence" | "every" | "each" | "member" | "index" |
+-- Abstractions
+"nothing" | "maybe" | "symbol" | "many" | "any" | "object" |
+-- Programming
+"constant" | "operator" | "procedure" | "argument" | "parameter" |
+-- OS
+"file" | "stream" | "pipe" | "port" | "line" | "interrupt" |
+-- Programming Refs
+"value" | "name" | "result" | "message" | "field" | "an" | "a" | "the" |
+-- Suffixes
+DataType "-y" | DataType "-ish" | DataType "-esque" | DataType "s";
+rules Operators ::=
+-- Comparison 1
+">" | "<" | "==" | "!=" | "<>" | "<=" | ">=" | "=" |
+-- Comparison 2
+"!<" | "!>" | "≡" | "≯" | "≮" | "≥" | "≤" | "≠" |
+-- Arithmetic
+"^" | "*" | "+" | "-" | "/" | "%" | "×" | "÷" |
+-- Logical
+"¬" | "⊻" | "∨" | "∧" | "⍱" | "⍲" |
+-- Arrows 1
+"<-" | "->" | "<-->" | "→" | "←" | "↑" | "↓" | "⇒" | "⇐" | "⇑" | "⇓" | "↔" |
+-- Comparison Words 1
+"less than" | "more than" | "greater than" | "equals" |
+-- Comparison Words 2
+"equal to" | "different than" | "different from" |
+-- Arithmetic Words 1
+"plus" | "minus" | "times" | "divided by" | "modulo" |
+-- Arithmetic Words 4
+"squared" | "cubed" | "root" | "square" | "cube" |
+-- Logical Words
+"not" | "xor" | "and" | "or" | "nand" | "nor" |
+-- Arrows Words 1
+"resulting in" | "fed to" | "right" | "left" | "leads to" |
+-- Arrows Words 2
+"results in" | "raise" | "lower" | "share" | "is equivalent to" |
+-- Arrows Words 3
+"taken from" | "stored in";
+
+
+
+coercions Exp 4;
+comment ";";
+comment "/*" "*/";
