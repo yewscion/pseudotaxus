@@ -1,0 +1,3 @@
+begin [Test].
+      read Test from user.
+end [Test].

@@ -1,0 +1,5 @@
+;;; This is the basic test file for the Pseudotaxus Parser.
+print Variable.
+display [Function].
+while Variable Variable [Function] Variable.
+/* Testing Other Comments */
