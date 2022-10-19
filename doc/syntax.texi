@@ -1,0 +1,2223 @@
+@c *********************************************************************
+@node Syntax, Keywords, A Longer Example, Top
+@chapter Syntax
+
+Any language is somewhat defined by its syntax, though oftentimes this means
+something similar to "do it like C". As we're doing pseudocode here, such
+conventions are not only unneeded, but also counterintuitive: They don't make
+obvious what's going on to those not well versed in C@.
+
+The syntax here was chosen as it is fairly easy for those outside of the
+programming sphere to understand, as well as being able to express in a
+consistent way most needed concepts in programming.
+
+@menu
+* Keywords::                    Each Recognized Keyword.
+* Constants::                   Each Recognized Constant.
+* Datatypes::                   Each Recognized Datatype.
+* Operators::                   Each Recognized Operator.
+* Algorithms::                  Each Recognized Algorithm.
+* Punctuation::                 All Recognized Punctuation.
+* Strings and Characters::      Dealing With Char Literals.
+* Numbers and Ratios::          Dealing With Numeric Literals.
+* Names::                       Referring to Other Definitons.
+@end menu
+
+@c *********************************************************************
+@node Keywords
+@section Keywords
+
+@cindex keywords
+A keyword is, by and large, the building block of the pseudotaxus. It is a
+word that expresses a fundamental concept, without specifying too much about
+that concept.
+
+
+These are different from Constants and Datatypes, as they are not nouns, but
+verbs.
+
+These are different from Operators, as they are not concerned with working
+with specific types of arguments, but instead concerned with specific actions
+the system might take.
+
+These are different from Algorithms, as they are single actions, not sets of
+actions.
+
+@menu
+* Procedure Definition::
+* Input::
+* Output::
+* Transformation::
+* Initialization::
+* Deviation::
+* Branching::
+* Looping::
+* Program Flow::
+* Selectors::
+* Type Operations::
+@end menu
+
+@c *********************************************************************
+@node Procedure Definition
+@subsection Procedure Definition
+
+@enumerate
+@item
+@anchor{begin}begin
+@pindex begin
+@cindex Defining a Procedure
+
+We are building programs here.
+
+Programs are, in one view, simply collections of procedures that are executed
+in an order on a machine. This keyword is how one can begin a new procedure.
+
+It expects a single right argument: A name for the procedure. This is
+followed by a period, and a newline.
+
+This can be nested, though doing so will result in a very complicated program
+(and is considered a girdling; @xref{Girdling}).
+
+This keyword works with the @code{end} keyword; @xref{end}.
+
+@example
+begin [Procedure].
+@end example
+
+@item
+@anchor{end}end
+
+In Pseudotaxus, we don't have the convenience of S-Expressions or Brace
+Blocks to mark where something ends.
+
+Though it is possible to do so with whitespace, this introduces a significant
+amount of ambiguity—especially when copying, pasting, highlighting code in a
+PDF or HTML website, or similar communication.
+
+Therefore, the @code{end} keyword explicitly marks the end of things,
+including procedure defintions and loop structures.
+
+It expects a single right argument: A name of the thing that is ending. This
+is followed by a period, and a newline. If there is no such thing to end,
+this will produce an error.
+
+
+@example
+end [Procedure].
+end for.
+end while.
+end Foo.
+@end example
+
+
+@item
+@anchor{take}take
+
+This keyword is meant to be used immediately following a use of @code{begin}
+to define a procedure. It specifies the parameters that a procedure accepts
+as arguments, giving them names to be used in the procedure defintion (and
+optionally specifying their @code{Datatype}; @xref{expecting}).
+
+It expects numerous right arguments which are all variable names;
+@xref{Names}. These should be a comma-separated list (@pxref{Comma}). This
+should be followed by the @code{as} keyword and the @code{arguments} datatype
+(@pxref{arguments}), and then either a period and a newline, or by another
+comma and a newline followed by an @code{expecting} call.
+
+@example
+begin [Procedure].
+      take Foo, Bar, and Baz as arguments.
+end [Procedure].
+
+begin [Procedure2].
+      take Foo as an argument,
+      expecting a string.
+end [Procedure2].
+@end example
+
+@end enumerate
+
+@c *********************************************************************
+@node Input
+@subsection Input
+
+Data is usually not hard-coded into programs (at least not
+anymore). Therefore it has become necessary to get the information from other
+places.
+
+@enumerate
+@item
+@anchor{read}read
+
+
+@example
+
+@end example
+
+@item
+@anchor{obtain}obtain
+
+
+@example
+
+@end example
+
+@item
+@anchor{get}get
+
+
+@example
+
+@end example
+
+@item
+@anchor{from}from
+
+
+@example
+
+@end example
+
+@item
+@anchor{use}use
+
+
+@example
+
+@end example
+
+@item
+@anchor{copy}copy
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Output
+@subsection Output
+
+@enumerate
+@item
+@anchor{print}print
+
+
+@example
+
+@end example
+
+@item
+@anchor{display}display
+
+
+@example
+
+@end example
+
+@item
+@anchor{show}show
+
+
+@example
+
+@end example
+
+@item
+@anchor{save}save
+
+
+@example
+
+@end example
+
+@item
+@anchor{return}return
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Transformation
+@subsection Transformation
+
+@enumerate
+@item
+@anchor{compute}compute
+
+
+@example
+
+@end example
+
+@item
+@anchor{calculate}calculate
+
+
+@example
+
+@end example
+
+@item
+@anchor{determine}determine
+
+
+@example
+
+@end example
+
+@item
+@anchor{append}append
+
+
+@example
+
+@end example
+
+@item
+@anchor{to}to
+
+
+@example
+
+@end example
+
+@item
+@anchor{over}over
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Initialization
+@subsection Initialization
+
+@enumerate
+@item
+@anchor{set}set
+
+
+@example
+
+@end example
+
+@item
+@anchor{initialize}initialize
+
+
+@example
+
+@end example
+
+@item
+@anchor{init}init
+
+
+@example
+
+@end example
+
+@item
+@anchor{let}let
+
+
+@example
+
+@end example
+
+@item
+@anchor{is}is
+
+
+@example
+
+@end example
+
+@item
+@anchor{has}has
+
+
+@example
+
+@end example
+
+@item
+@anchor{contains}contains
+
+
+@example
+
+@end example
+
+@item
+@anchor{be}be
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Deviation
+@subsection Deviation
+
+@enumerate
+@item
+@anchor{increment}increment
+
+
+@example
+
+@end example
+
+@item
+@anchor{bump}bump
+
+
+@example
+
+@end example
+
+@item
+@anchor{decrement}decrement
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Branching
+@subsection Branching
+
+@enumerate
+@item
+@anchor{if}if
+
+
+@example
+
+@end example
+
+@item
+@anchor{then}then
+
+
+@example
+
+@end example
+
+@item
+@anchor{else}else
+
+
+@example
+
+@end example
+
+@item
+@anchor{otherwise}otherwise
+
+
+@example
+
+@end example
+
+@item
+@anchor{when}when
+
+
+@example
+
+@end example
+
+@item
+@anchor{unless}unless
+
+
+@example
+
+@end example
+
+@item
+@anchor{case}case
+
+
+@example
+
+@end example
+
+@item
+@anchor{of}of
+
+
+@example
+
+@end example
+
+@item
+@anchor{others}others
+
+
+@example
+
+@end example
+
+@item
+@anchor{endcase}endcase
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Looping
+@subsection Looping
+
+@enumerate
+@item
+@anchor{while}while
+
+
+@example
+
+@end example
+
+@item
+@anchor{done}done
+
+
+@example
+
+@end example
+
+@item
+@anchor{endwhile}endwhile
+
+
+@example
+
+@end example
+
+@item
+@anchor{do}do
+
+
+@example
+
+@end example
+
+@item
+@anchor{repeat}repeat
+
+
+@example
+
+@end example
+
+@item
+@anchor{until}until
+
+
+@example
+
+@end example
+
+@item
+@anchor{for}for
+
+
+@example
+
+@end example
+
+@item
+@anchor{endfor}endfor
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Program Flow
+@subsection Program Flow
+
+@enumerate
+@item
+@anchor{call}call
+
+
+@example
+
+@end example
+
+@item
+@anchor{exception}exception
+
+
+@example
+
+@end example
+
+@item
+@anchor{as}as
+
+
+@example
+
+@end example
+
+@item
+@anchor{recurse}recurse
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Selectors
+@subsection Selectors
+
+@enumerate
+@item
+@anchor{this}this
+
+
+@example
+
+@end example
+
+@item
+@anchor{that}that
+
+
+@example
+
+@end example
+
+@item
+@anchor{except}except
+
+
+@example
+
+@end example
+
+@item
+@anchor{in}in
+
+
+@example
+
+@end example
+
+@item
+@anchor{at}at
+
+
+@example
+
+@end example
+
+@item
+@anchor{with}with
+
+
+@example
+
+@end example
+
+@item
+@anchor{without}without
+
+
+@example
+
+@end example
+
+@item
+@anchor{aside}aside
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Type Operations
+@subsection Type Operations
+
+@enumerate
+@item
+@anchor{convert}convert
+
+
+@example
+
+@end example
+
+@item
+@anchor{cast}cast
+
+
+@example
+
+@end example
+
+@item
+@anchor{ensure}ensure
+
+
+@example
+
+@end example
+
+@item
+@anchor{expecting}expecting
+
+
+@example
+
+@end example
+
+@item
+@anchor{expect}expect
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Constants
+@section Constants
+
+@menu
+* Booleans::
+* Unbound::
+* Status::
+* Formatting::
+* Assumptions::
+@end menu
+
+@c *********************************************************************
+@node Booleans
+@subsection Booleans
+
+@enumerate
+@item
+@anchor{true}true
+
+
+@example
+
+@end example
+
+@item
+@anchor{false}false
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Unbound
+@subsection Unbound
+
+@enumerate
+@item
+@anchor{nonexistant}nonexistant
+
+
+@example
+
+@end example
+
+@item
+@anchor{unbound}unbound
+
+
+@example
+
+@end example
+
+@item
+@anchor{missing}missing
+
+
+@example
+
+@end example
+
+@item
+@anchor{null}null
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Status
+@subsection Status
+
+@enumerate
+@item
+@anchor{success}success
+
+
+@example
+
+@end example
+
+@item
+@anchor{failure}failure
+
+
+@example
+
+@end example
+
+@item
+@anchor{succeeds}succeeds
+
+
+@example
+
+@end example
+
+@item
+@anchor{fails}fails
+
+
+@example
+
+@end example
+
+@item
+@anchor{found}found
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Formatting
+@subsection Formatting
+
+@enumerate
+@item
+@anchor{newline}newline
+
+
+@example
+
+@end example
+
+@item
+@anchor{beep}beep
+
+
+@example
+
+@end example
+
+@item
+@anchor{indent}indent
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Assumptions
+@subsection Assumptions
+
+@enumerate
+@item
+@anchor{user}user
+
+
+@example
+
+@end example
+
+@item
+@anchor{screen}screen
+
+
+@example
+
+@end example
+
+@item
+@anchor{system}system
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Datatypes
+@section Datatypes
+
+@menu
+* Basics::
+* Extended Boolean::
+* Collections::
+* Abstractions::
+* Programming::
+* OS::
+* Suffixes::
+* Programming Refs::
+@end menu
+
+@c *********************************************************************
+@node Basics
+@subsection Basics
+
+@enumerate
+@item
+@anchor{number}number
+
+
+@example
+
+@end example
+
+@item
+@anchor{string}string
+
+
+@example
+
+@end example
+
+@item
+@anchor{character}character
+
+
+@example
+
+@end example
+
+@item
+@anchor{boolean}boolean
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Extended Boolean
+@subsection Extended Boolean
+
+@enumerate
+@item
+@anchor{truthy}truthy
+
+
+@example
+
+@end example
+
+@item
+@anchor{falsey}falsey
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Collections
+@subsection Collections
+
+@enumerate
+@item
+@anchor{list}list
+
+
+@example
+
+@end example
+
+@item
+@anchor{array}array
+
+
+@example
+
+@end example
+
+@item
+@anchor{sequence}sequence
+
+
+@example
+
+@end example
+
+@item
+@anchor{every}every
+
+
+@example
+
+@end example
+
+@item
+@anchor{each}each
+
+
+@example
+
+@end example
+
+@item
+@anchor{member}member
+
+
+@example
+
+@end example
+
+@item
+@anchor{index}index
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Abstractions
+@subsection Abstractions
+
+@enumerate
+@item
+@anchor{nothing}nothing
+
+
+@example
+
+@end example
+
+@item
+@anchor{maybe}maybe
+
+
+@example
+
+@end example
+
+@item
+@anchor{symbol}symbol
+
+
+@example
+
+@end example
+
+@item
+@anchor{many}many
+
+
+@example
+
+@end example
+
+@item
+@anchor{any}any
+
+
+@example
+
+@end example
+
+@item
+@anchor{object}object
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Programming
+@subsection Programming
+
+@enumerate
+@item
+@anchor{constant}constant
+
+
+@example
+
+@end example
+
+@item
+@anchor{operator}operator
+
+
+@example
+
+@end example
+
+@item
+@anchor{procedure}procedure
+
+
+@example
+
+@end example
+
+@item
+@anchor{argument} @anchor{arguments}argument
+
+
+@example
+
+@end example
+
+@item
+@anchor{parameter}parameter
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node OS
+@subsection OS
+
+@enumerate
+@item
+@anchor{file}file
+
+
+@example
+
+@end example
+
+@item
+@anchor{stream}stream
+
+
+@example
+
+@end example
+
+@item
+@anchor{pipe}pipe
+
+
+@example
+
+@end example
+
+@item
+@anchor{port}port
+
+
+@example
+
+@end example
+
+@item
+@anchor{line}line
+
+
+@example
+
+@end example
+
+@item
+@anchor{interrupt}interrupt
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Suffixes
+@subsection Suffixes
+
+@enumerate
+@item
+@anchor{numberish}numberish
+
+
+@example
+
+@end example
+
+@item
+@anchor{symbolesque}symbolesque
+
+
+@example
+
+@end example
+
+@item
+@anchor{file (1)}file
+
+
+@example
+
+@end example
+@itemize
+@item
+@end itemize
+
+@item
+@anchor{like}like
+
+
+@example
+
+@end example
+
+@item
+@anchor{lists}lists
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Programming Refs
+@subsection Programming Refs
+
+@enumerate
+@item
+@anchor{value}value
+
+
+@example
+
+@end example
+
+@item
+@anchor{name}name
+
+
+@example
+
+@end example
+
+@item
+@anchor{result}result
+
+
+@example
+
+@end example
+
+@item
+@anchor{message}message
+
+
+@example
+
+@end example
+
+@item
+@anchor{field}field
+
+
+@example
+
+@end example
+
+@item
+@anchor{an}an
+
+
+@example
+
+@end example
+
+@item
+@anchor{a}a
+
+
+@example
+
+@end example
+
+@item
+@anchor{the}the
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Operators
+@section Operators
+
+@menu
+* Comparison Words 1::
+* Comparison Words 2::
+* Arithmetic Words 1::
+* Arithmetic Words 2::
+* Artihmetic Words 3::
+* Arithmetic Words 4::
+* Logical Words::
+* Arrows Words::
+@end menu
+
+@c *********************************************************************
+@node Comparison Words 1
+@subsection Comparison Words 1
+
+@enumerate
+@item
+@anchor{less}less
+
+
+@example
+
+@end example
+
+@item
+@anchor{than}than
+
+
+@example
+
+@end example
+
+@item
+@anchor{more}more
+
+
+@example
+
+@end example
+
+@item
+@anchor{than (1)}than
+
+
+@example
+
+@end example
+
+@item
+@anchor{greater}greater
+
+
+@example
+
+@end example
+
+@item
+@anchor{than (2)}than
+
+
+@example
+
+@end example
+
+@item
+@anchor{equals}equals
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Comparison Words 2
+@subsection Comparison Words 2
+
+@enumerate
+@item
+@anchor{equal}equal
+
+
+@example
+
+@end example
+
+@item
+@anchor{to (1)}to
+
+
+@example
+
+@end example
+
+@item
+@anchor{different}different
+
+
+@example
+
+@end example
+
+@item
+@anchor{than (3)}than
+
+
+@example
+
+@end example
+
+@item
+@anchor{different (1)}different
+
+
+@example
+
+@end example
+
+@item
+@anchor{from (1)}from
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Arithmetic Words 1
+@subsection Arithmetic Words 1
+
+@enumerate
+@item
+@anchor{plus}plus
+
+
+@example
+
+@end example
+
+@item
+@anchor{minus}minus
+
+
+@example
+
+@end example
+
+@item
+@anchor{times}times
+
+
+@example
+
+@end example
+
+@item
+@anchor{divided}divided
+
+
+@example
+
+@end example
+
+@item
+@anchor{by}by
+
+
+@example
+
+@end example
+
+@item
+@anchor{modulo}modulo
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Arithmetic Words 2
+@subsection Arithmetic Words 2
+
+@enumerate
+@item
+@anchor{add}add
+
+
+@example
+
+@end example
+
+@item
+@anchor{subtract}subtract
+
+
+@example
+
+@end example
+
+@item
+@anchor{multiply}multiply
+
+
+@example
+
+@end example
+
+@item
+@anchor{divide}divide
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Artihmetic Words 3
+@subsection Artihmetic Words 3
+
+@enumerate
+@item
+@anchor{take (1)}take
+
+
+@example
+
+@end example
+
+@item
+@anchor{the (1)}the
+
+
+@example
+
+@end example
+
+@item
+@anchor{remainder}remainder
+
+
+@example
+
+@end example
+
+@item
+@anchor{of (1)}of
+
+
+@example
+
+@end example
+
+@item
+@anchor{raised}raised
+
+
+@example
+
+@end example
+
+@item
+@anchor{to (2)}to
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Arithmetic Words 4
+@subsection Arithmetic Words 4
+
+@enumerate
+@item
+@anchor{power}power
+
+
+@example
+
+@end example
+
+@item
+@anchor{squared}squared
+
+
+@example
+
+@end example
+
+@item
+@anchor{cubed}cubed
+
+
+@example
+
+@end example
+
+@item
+@anchor{root}root
+
+
+@example
+
+@end example
+
+@item
+@anchor{square}square
+
+
+@example
+
+@end example
+
+@item
+@anchor{cube}cube
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Logical Words
+@subsection Logical Words
+
+@enumerate
+@item
+@anchor{not}not
+
+
+@example
+
+@end example
+
+@item
+@anchor{xor}xor
+
+
+@example
+
+@end example
+
+@item
+@anchor{and}and
+
+
+@example
+
+@end example
+
+@item
+@anchor{or}or
+
+
+@example
+
+@end example
+
+@item
+@anchor{exclusive}exclusive
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Arrows Words
+@subsection Arrows Words
+
+@enumerate
+@item
+@anchor{resulting}resulting
+
+
+@example
+
+@end example
+
+@item
+@anchor{in (1)}in
+
+
+@example
+
+@end example
+
+@item
+@anchor{fed}fed
+
+
+@example
+
+@end example
+
+@item
+@anchor{right}right
+
+
+@example
+
+@end example
+
+@item
+@anchor{left}left
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Algorithms
+@section Algorithms
+
+@menu
+* Arithmetic::
+* Advanced Arithmetic::
+* Statistics::
+* Minimax::
+* Sort::
+* Scan, Grade, Reduce,: Scan Grade Reduce. 
+* Examinations::
+* Generation::
+@end menu
+
+@c *********************************************************************
+@node Arithmetic
+@subsection Arithmetic
+
+@enumerate
+@item
+@anchor{sum}sum
+
+
+@example
+
+@end example
+
+@item
+@anchor{difference}difference
+
+
+@example
+
+@end example
+
+@item
+@anchor{product}product
+
+
+@example
+
+@end example
+
+@item
+@anchor{quotient}quotient
+
+
+@example
+
+@end example
+
+@item
+@anchor{remainder (1)}remainder
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Advanced Arithmetic
+@subsection Advanced Arithmetic
+
+@enumerate
+@item
+@anchor{sign}sign
+
+
+@example
+
+@end example
+
+@item
+@anchor{reciprocal}reciprocal
+
+
+@example
+
+@end example
+
+@item
+@anchor{magnitude}magnitude
+
+
+@example
+
+@end example
+
+@item
+@anchor{logarithm}logarithm
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Statistics
+@subsection Statistics
+
+@enumerate
+@item
+@anchor{average}average
+
+
+@example
+
+@end example
+
+@item
+@anchor{mean}mean
+
+
+@example
+
+@end example
+
+@item
+@anchor{median}median
+
+
+@example
+
+@end example
+
+@item
+@anchor{mode}mode
+
+
+@example
+
+@end example
+
+@item
+@anchor{range}range
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Minimax
+@subsection Minimax
+
+@enumerate
+@item
+@anchor{max}max
+
+
+@example
+
+@end example
+
+@item
+@anchor{maximum}maximum
+
+
+@example
+
+@end example
+
+@item
+@anchor{min}min
+
+
+@example
+
+@end example
+
+@item
+@anchor{minimum}minimum
+
+
+@example
+
+@end example
+
+@item
+@anchor{maxima}maxima
+
+
+@example
+
+@end example
+
+@item
+@anchor{minima}minima
+
+
+@example
+
+@end example
+
+@item
+@anchor{ceiling}ceiling
+
+
+@example
+
+@end example
+
+@item
+@anchor{floor}floor
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Sort
+@subsection Sort
+
+@enumerate
+@item
+@anchor{and (1)}and
+
+
+@example
+
+@end example
+Filter
+
+@item
+@anchor{sort}sort
+
+
+@example
+
+@end example
+
+@item
+@anchor{reverse}reverse
+
+
+@example
+
+@end example
+
+@item
+@anchor{search}search
+
+
+@example
+
+@end example
+
+@item
+@anchor{find}find
+
+
+@example
+
+@end example
+
+@item
+@anchor{filter}filter
+
+
+@example
+
+@end example
+
+@item
+@anchor{in (2)}in
+
+
+@example
+
+@end example
+
+@item
+@anchor{filter (1)}filter
+
+
+@example
+
+@end example
+
+@item
+@anchor{out}out
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Scan Grade Reduce
+@subsection Scan, Grade, Reduce,
+
+@enumerate
+@item
+@anchor{and (2)}and
+
+
+@example
+
+@end example
+Map
+
+@item
+@anchor{grade}grade
+
+
+@example
+
+@end example
+
+@item
+@anchor{up}up
+
+
+@example
+
+@end example
+
+@item
+@anchor{grade (1)}grade
+
+
+@example
+
+@end example
+
+@item
+@anchor{down}down
+
+
+@example
+
+@end example
+
+@item
+@anchor{scan}scan
+
+
+@example
+
+@end example
+
+@item
+@anchor{map}map
+
+
+@example
+
+@end example
+
+@item
+@anchor{reduce}reduce
+
+
+@example
+
+@end example
+
+@item
+@anchor{expand}expand
+
+
+@example
+
+@end example
+
+@item
+@anchor{replicate}replicate
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Examinations
+@subsection Examinations
+
+@enumerate
+@item
+@anchor{depth}depth
+
+
+@example
+
+@end example
+
+@item
+@anchor{match}match
+
+
+@example
+
+@end example
+
+@item
+@anchor{tally}tally
+
+
+@example
+
+@end example
+
+@item
+@anchor{enlist}enlist
+
+
+@example
+
+@end example
+
+@item
+@anchor{membership}membership
+
+
+@example
+
+@end example
+
+@item
+@anchor{index (1)}index
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Generation
+@subsection Generation
+
+@enumerate
+@item
+@anchor{replicating}replicating
+
+
+@example
+
+@end example
+
+@item
+@anchor{iota}iota
+
+
+@example
+
+@end example
+@end enumerate
+
+@c *********************************************************************
+@node Punctuation
+@section Punctuation
+
+@c *********************************************************************
+@node Period
+@subsection Period
+
+@c *********************************************************************
+@node Colon
+@subsection Colon
+
+@c *********************************************************************
+@node Comma
+@subsection Comma
+
+@c *********************************************************************
+@node Backtick
+@subsection Backtick
+
+@c *********************************************************************
+@node Double Quote
+@subsection Double Quote
+
+@c *********************************************************************
+@node Single Quote
+@subsection Single Quote
+
+@c *********************************************************************
+@node Question Mark
+@subsection Question Mark
+
+@c *********************************************************************
+@node Exclamation Point
+@subsection Double Quote
+
+
+@c *********************************************************************
+@node Strings and Characters
+@section Strings and Characters
+
+@c *********************************************************************
+@node Numbers and Ratios
+@section Numbers and Ratios
+
+@c *********************************************************************
+@node Names
+@section Names

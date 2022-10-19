@@ -74,7 +74,7 @@ Syntax
 * Algorithms::                  Each Recognized Algorithm.
 * Punctuation::                 All Recognized Punctuation.
 * Strings and Characters::      Dealing With Char Literals.
-* Numbers::                     Dealing With Numeric Literals.
+* Numbers and Ratios::          Dealing With Numeric Literals.
 * Names::                       Referring to Other Definitons.
 
 Other Uses
@@ -118,66 +118,28 @@ at lease for myself.
 @node A Longer Example, Concept Index, A Simple Example, Introduction
 @section A Longer Example
 
-@c *********************************************************************
-@node Syntax, Keywords, A Longer Example, Top
-@chapter Syntax
+@include syntax.texi
 
-Syntax is the name of the game here. 
-
-@menu
-* Keywords::                    Each Recognized Keyword.
-* Constants::                   Each Recognized Constant.
-* Datatypes::                   Each Recognized Datatype.
-* Operators::                   Each Recognized Operator.
-* Algorithms::                  Each Recognized Algorithm.
-* Punctuation::                 All Recognized Punctuation.
-* Strings and Characters::      Dealing With Char Literals.
-* Numbers::                     Dealing With Numeric Literals.
-* Names::                       Referring to Other Definitons.
-@end menu
-@c *********************************************************************
-@node Keywords, Constants, Syntax, Syntax
-@section Keywords
-@c *********************************************************************
-@node Constants, Datatypes, Keywords, Syntax
-@section Constants
-@c *********************************************************************
-@node Datatypes, Operators, Constants, Syntax
-@section Datatypes
-@c *********************************************************************
-@node Operators, Algorithms, Datatypes, Syntax
-@section Operators
-@c *********************************************************************
-@node Algorithms, Punctuation, Operators, Syntax
-@section Algorithms
-@c *********************************************************************
-@node Punctuation, Strings and Characters, Algorithms, Syntax
-@section Punctuation
-@c *********************************************************************
-@node Strings and Characters, Numbers, Punctuation, Syntax
-@section Strings and Characters
-@c *********************************************************************
-@node Numbers, Names, Strings and Characters, Syntax
-@section Numbers
-@c *********************************************************************
-@node Names, Other Uses, Numbers, Syntax
-@section Names
 @c *********************************************************************
 @node Other Uses, Grafting, Names, Top
 @chapter Other Uses
 
 @menu
 * Grafting::                    Turning Pseudocode Into Comments.
+* Girdling::                    Sometimes it's necessary to break the rules.
 * Pruning::                     Decompile Algorithms into Simpler Code.
 * Pleaching::                   Compile Code into Shorter Algorithms.
 * Arils::                       Convert Procedures Into Algorithms.
 * Pseudarils::                  Convert Procedures Into Boilerplate.
 @end menu
 @c *********************************************************************
-@node Grafting, Pruning, Other Uses, Other Uses
+@node Grafting, Girdling, Other Uses, Other Uses
 @section Grafting
 @c *********************************************************************
-@node Pruning, Pleaching, Grafting, Other Uses
+@node Girdling, Pruning, Grafting, Other Uses
+@section Girdling
+@c *********************************************************************
+@node Pruning, Pleaching, Girdling, Other Uses
 @section Pruning
 @c *********************************************************************
 @node Pleaching, Arils, Pruning, Other Uses
@@ -188,7 +150,6 @@ Syntax is the name of the game here.
 @c *********************************************************************
 @node Pseudarils, Concept Index, Arils, Other Uses
 @section Pseudarils
-
 
 @c *********************************************************************
 @node Concept Index, Programming Index, Introduction, Top
