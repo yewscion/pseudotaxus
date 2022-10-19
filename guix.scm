@@ -12,6 +12,8 @@
  (gnu packages java)
  (gnu packages haskell)
  (gnu packages haskell-xyz)
+ (gnu packages agda)
+ (gnu packages tex)
  (cdr255 programming)
  (guix gexp))
 
@@ -31,7 +33,7 @@
      ;;     %standard-phases)
      ))
   (native-inputs (list autoconf automake pkg-config texinfo))
-  (inputs (list ghc ghc-bnfc ghc-alex ghc-happy))
+  (inputs (list ghc ghc-bnfc ghc-alex ghc-happy agda texlive-bin))
   (synopsis "Somewhat-standardized pseudocode syntax")
   (description
    "Pseudotaxus is a collection of standard symbols (words and punctuation) that
