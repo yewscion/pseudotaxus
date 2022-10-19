@@ -57,15 +57,11 @@ pseudotaxus_xml_SOURCES = $(BNFC_SOURCE)
 # install-exec: pseudotaxus-parse
 # 	install -c -m 755 pseudotaxus-parse $(my_execbindir)
 
-all: pseudotaxus-parse$(EXEEXT) pseudotaxus-xml$(EXEEXT)
+pseudotaxus-parse$(EXEEXT) pseudotaxus-xml$(EXEEXT) &: Main
+	cp -v Main pseudotaxus-parse
+	cp -v Pseudotaxus/Test pseudotaxus-xml
 
-pseudotaxus-parse$(EXEEXT): Main
-	mv -v Main pseudotaxus-parse
-
-pseudotaxus-xml$(EXEEXT): Pseudotaxus/Test
-	mv -v Pseudotaxus/Test pseudotaxus-xml
-
-Main Pseudotaxus/Test: $(BNFC_MAIN_MAKEFILE)
+Main: $(BNFC_MAIN_MAKEFILE)
 	$(MAKE) -f $(BNFC_MAIN_MAKEFILE)
 
 $(BNFC_MAIN_MAKEFILE): $(BNFC_SOURCE)
