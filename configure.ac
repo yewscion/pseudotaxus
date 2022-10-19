@@ -30,7 +30,7 @@ AC_PROG_CC
 
 dnl Set Up Automake
 AM_INIT_AUTOMAKE([-Wall -Wportability gnu check-news dist-bzip2
-filename-length-max=99 std-options])
+filename-length-max=99 std-options info-in-builddir])
 
 dnl Finishing Up
 AC_PROG_LN_S

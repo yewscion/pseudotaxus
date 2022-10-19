@@ -1,10 +1,19 @@
 ################################################################################
 # Set Up Other Variables
-BNFC_MAKEFILE = Makefile.bnfc
 
-BNFC_TARGET = haskell
+BNFC_MAIN = haskell
 
-BNFC_OPTIONS = --$(BNFC_TARGET) --make=$(BNFC_MAKEFILE)
+BNFC_PYGMENTS = pygments
+
+BNFC_LATEX = latex
+
+BNFC_MAIN_MAKEFILE = Makefile.$(BNFC_MAIN).bnfc
+BNFC_LATEX_MAKEFILE = Makefile.$(BNFC_LATEX).bnfc
+
+BNFC_MAIN_OPTIONS = --$(BNFC_MAIN) -d --xml --agda --make=$(BNFC_MAIN_MAKEFILE)
+BNFC_PYGMENTS_OPTIONS = --$(BNFC_PYGMENTS)
+BNFC_LATEX_OPTIONS = --$(BNFC_LATEX) --make=$(BNFC_LATEX_MAKEFILE)
+
 
 ## Enable local m4 cache
 ACLOCAL_AMFLAGS = -I m4
@@ -37,21 +46,51 @@ BNFC_SOURCE = $(srcdir)/pseudotaxus/pseudotaxus.cf
 # 	$(LN_S) $(DESTDIR)$(bindir)/realfile $(DESTDIR)$(bindir)/link
 # 	chmod +x $(DESTDIR)$(javadir)/pseudotaxus.jar
 
-## Sources and Extras
+# ## Sources and Extras
 EXTRA_DIST += $(BNFC_SOURCE)
 ################################################################################
 # Added Jobs
-bin_PROGRAMS = TestPseudotaxus
-TestPseudotaxus_SOURCES = TestPseudotaxus.hs
+bin_PROGRAMS = pseudotaxus-parse pseudotaxus-xml
+pseudotaxus_parse_SOURCES = $(BNFC_SOURCE)
+pseudotaxus_xml_SOURCES = $(BNFC_SOURCE)
 
-# install-exec: TestPseudotaxus
-# 	install -c -m 755 TestPseudotaxus $(my_execbindir)
+# install-exec: pseudotaxus-parse
+# 	install -c -m 755 pseudotaxus-parse $(my_execbindir)
 
-TestPseudotaxus$(EXEEXT): $(BNFC_MAKEFILE)
-	$(MAKE) -f $(BNFC_MAKEFILE)
+all: pseudotaxus-parse$(EXEEXT) pseudotaxus-xml$(EXEEXT)
 
-$(BNFC_MAKEFILE): $(BNFC_SOURCE)
-	$(BNFC) $(BNFC_OPTIONS) $(BNFC_SOURCE)
+pseudotaxus-parse$(EXEEXT): Main
+	mv -v Main pseudotaxus-parse
+
+pseudotaxus-xml$(EXEEXT): Pseudotaxus/Test
+	mv -v Pseudotaxus/Test pseudotaxus-xml
+
+Main Pseudotaxus/Test: $(BNFC_MAIN_MAKEFILE)
+	$(MAKE) -f $(BNFC_MAIN_MAKEFILE)
+
+$(BNFC_MAIN_MAKEFILE): $(BNFC_SOURCE)
+	$(BNFC) $(BNFC_MAIN_OPTIONS) $(BNFC_SOURCE)
+
+pseudotaxus-bnfc.pdf: pseudotaxus.tex
+	lualatex --jobname=pseudotaxus-bnfc pseudotaxus.tex
+
+pseudotaxus.tex: $(BNFC_SOURCE)
+	$(BNFC) $(BNFC_LATEX_OPTIONS) $(BNFC_SOURCE)
+
+install-docs: all-docs 
+	DESTDIR=$(DESTDIR) $(MAKE) install-pdf
+	DESTDIR=$(DESTDIR) $(MAKE) install-dvi
+	DESTDIR=$(DESTDIR) $(MAKE) install-html
+	DESTDIR=$(DESTDIR) $(MAKE) install-ps
+	install -c -m 644 pseudotaxus-bnfc.pdf \
+$(DESTDIR)/usr/local/share/doc/pseudotaxus/
+
+all-docs: doc/pseudotaxus.texi pseudotaxus-bnfc.pdf
+	$(MAKE) pdf
+	$(MAKE) dvi
+	$(MAKE) html
+	$(MAKE) ps
+
 
 ################################################################################
 
