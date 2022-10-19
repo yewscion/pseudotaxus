@@ -7,8 +7,8 @@ begin [Constructor].
       set object -> Mileage = 0.
 end [Constructor].
 
-begin [ParamConstructor],
-        with parameters Make and Model and Color and Year and Mileage,
+begin [ParamConstructor].
+        take parameters Make and Model and Color and Year and Mileage,
              expecting a string, a string, a string, a number, and a number.
              
       call [addNewVehicle],
@@ -16,8 +16,8 @@ begin [ParamConstructor],
                      and this -> Year and this ->Mileage.
 end [ParamConstructor].
 
-begin [addNewVehicle],
-      with parameters Make and Model and Color and Year and Mileage,
+begin [addNewVehicle].
+      take parameters Make and Model and Color and Year and Mileage,
            expecting a string, a string, a string, a number, and a number.
       
       call [removeVehicle].
@@ -49,7 +49,8 @@ begin [removeVehicle].
       return "Success."
 end [removeVehicle].
 
-begin [updateVehicle], with parameters Key and Value.
+begin [updateVehicle].
+      take parameters Key and Value.
       if Key == "make" then:
          set object -> Make = Value.
          return true.
