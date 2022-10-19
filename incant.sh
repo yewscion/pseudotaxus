@@ -15,7 +15,7 @@ mkdir -pv build/
 ./bootstrap
 cd build/
 ../configure
-make
+make -j12
 DESTDIR=test/ make install
 tree test
 make dist
