@@ -24,10 +24,9 @@ consistent way most needed concepts in programming.
 @end menu
 
 @c *********************************************************************
-@node Keywords
+@node Keywords, Constants, Syntax, Syntax
 @section Keywords
-
-@cindex keywords
+@cindex Keywords
 A keyword is, by and large, the building block of the pseudotaxus. It is a
 word that expresses a fundamental concept, without specifying too much about
 that concept.
@@ -55,17 +54,19 @@ actions.
 * Program Flow::
 * Selectors::
 * Type Operations::
+* Ignored Keywords::
 @end menu
 
 @c *********************************************************************
-@node Procedure Definition
+@node Procedure Definition, Input, Keywords, Keywords
 @subsection Procedure Definition
+@cindex Defining a Procedure
 
 @enumerate
 @item
 @anchor{begin}begin
-@pindex begin
-@cindex Defining a Procedure
+@findex begin
+@cindex Starting a Procedure
 
 We are building programs here.
 
@@ -86,6 +87,9 @@ begin [Procedure].
 
 @item
 @anchor{end}end
+@findex end
+@cindex Ending a Procedure
+@cindex Ending a Loop
 
 In Pseudotaxus, we don't have the convenience of S-Expressions or Brace
 Blocks to mark where something ends.
@@ -101,7 +105,6 @@ It expects a single right argument: A name of the thing that is ending. This
 is followed by a period, and a newline. If there is no such thing to end,
 this will produce an error.
 
-
 @example
 end [Procedure].
 end for.
@@ -109,9 +112,10 @@ end while.
 end Foo.
 @end example
 
-
 @item
 @anchor{take}take
+@findex take
+@cindex Naming Procedure Parameters
 
 This keyword is meant to be used immediately following a use of @code{begin}
 to define a procedure. It specifies the parameters that a procedure accepts
@@ -138,65 +142,130 @@ end [Procedure2].
 @end enumerate
 
 @c *********************************************************************
-@node Input
+@node Input, Output, Procedure Definition, Keywords
 @subsection Input
+@cindex Getting Data from the Outside World.
 
-Data is usually not hard-coded into programs (at least not
-anymore). Therefore it has become necessary to get the information from other
-places.
+Data is usually not hard-coded into programs (at least not anymore). It's
+usually necessary to get the information from other places, be it user input,
+reading a file, or making a copy of something.
 
 @enumerate
 @item
 @anchor{read}read
+@findex read
+@cindex Handling Input
 
+Perhaps it's my Lisp background showing through, but the most basic of input
+operations to me is the idea of "reading" it in.
+
+It expects a variable name as its right argument; @xref{Names}. This should
+be followed by the @code{from} keyword (@pxref{from}) and one of the
+@code{assumption} constants (@pxref{Assumptions}). This is then followed by
+either a period and a newline, or by another comma and a newline followed by
+an @code{expecting} call; @xref{expecting}.
 
 @example
-
+begin [Procedure].
+      let File be the file at "./test.txt".
+      read Variable from user.
+      read Variable2 from File,
+      expecting a string.
+      display Variable.
+      display Variable2.
+end [Procedure].
 @end example
 
 @item
 @anchor{obtain}obtain
+@findex obtain
+@cindex Converting Input
 
+
+This is a synonym for @code{read}, but with the assumption of immediate
+processing in a @code{colon} statement; @xref{Colon}.
 
 @example
-
+begin [Procedure].
+      obtain Variable from user:
+             convert to number.
+      obtain Variable2 from File:
+             increment.
+end [Procedure].
 @end example
 
 @item
 @anchor{get}get
+@findex get
+@cindex Input from User
 
+This is a synonym for @code{read}, but with the assumption of user input.
 
 @example
-
+begin [Procedure].
+      get Variable.
+      get Variable2,
+      expecting a string.
+end [Procedure].
 @end example
 
 @item
 @anchor{from}from
+@findex from
+@cindex Specifying Data Sources
 
+The @code{from} keyword sets where @code{read} and @code{obtain} get their
+input from.
 
 @example
-
+begin [Procedure].
+      read Variable from user.
+end [Procedure].
 @end example
 
 @item
 @anchor{use}use
+@findex use
+@cindex Mutable Data from Other Sources
 
+
+The @code{use} keyword specifies that, rather than getting input like
+@code{read} and friends, we are instead using some other source of data as
+the input for a Variable, be it a system function, the result of a procedure,
+or simply the value of another variable.
+
+This expects the following form, with three right arguments: The source, the
+@code{as} keyword, and the destination. The source and destination can both
+be any of a @code{name}, a @code{constant}, or a function @code{call} using
+the @code{result} keyword.
 
 @example
-
+begin [Procedure].
+      use Variable1 as Variable2.
+      use the clock as Variable3.
+      use the result of [Foo] as Variable 4.
+end [Procedure].
 @end example
 
 @item
 @anchor{copy}copy
+@findex copy
+@cindex Immutable Data from Other Sources
 
+The @code{copy} keyword is a synonym for @code{use}, but with the explicit
+assumption that a new, immutable copy is made of the value.
 
 @example
-
+begin [Procedure].
+      copy Variable1 as Variable2.
+      copy the clock as Variable3.
+      copy the result of [Foo] as Variable 4.
+end [Procedure].
 @end example
 @end enumerate
 
 @c *********************************************************************
-@node Output
+@node Output, Transformation, Input, Keywords
 @subsection Output
 
 @enumerate
@@ -242,7 +311,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Transformation
+@node Transformation, Initialization, Output, Keywords
 @subsection Transformation
 
 @enumerate
@@ -296,7 +365,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Initialization
+@node Initialization, Deviation, Transformation, Keywords
 @subsection Initialization
 
 @enumerate
@@ -366,7 +435,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Deviation
+@node Deviation, Branching, Initialization, Keywords
 @subsection Deviation
 
 @enumerate
@@ -396,7 +465,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Branching
+@node Branching, Looping, Deviation, Keywords
 @subsection Branching
 
 @enumerate
@@ -482,7 +551,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Looping
+@node Looping, Program Flow, Branching, Keywords
 @subsection Looping
 
 @enumerate
@@ -552,7 +621,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Program Flow
+@node Program Flow, Selectors, Looping, Keywords
 @subsection Program Flow
 
 @enumerate
@@ -590,7 +659,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Selectors
+@node Selectors, Type Operations, Program Flow, Keywords
 @subsection Selectors
 
 @enumerate
@@ -660,7 +729,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Type Operations
+@node Type Operations, Ignored Keywords, Selectors, Keywords
 @subsection Type Operations
 
 @enumerate
@@ -706,7 +775,39 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Constants
+@node Ignored Keywords, Constants, Type Operations, Keywords
+@subsection Ignored Keywords
+
+@enumerate
+@item
+@anchor{an}an
+
+
+@example
+
+@end example
+
+@item
+@anchor{a}a
+
+
+@example
+
+@end example
+
+@item
+@anchor{the}the
+
+
+@example
+
+@end example
+@end enumerate
+
+
+
+@c *********************************************************************
+@node Constants, Datatypes, Keywords, Syntax 
 @section Constants
 
 @menu
@@ -718,7 +819,7 @@ places.
 @end menu
 
 @c *********************************************************************
-@node Booleans
+@node Booleans, Unbound, Constants, Constants
 @subsection Booleans
 
 @enumerate
@@ -740,7 +841,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Unbound
+@node Unbound, Status, Booleans, Constants
 @subsection Unbound
 
 @enumerate
@@ -778,7 +879,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Status
+@node Status, Formatting, Unbound, Constants
 @subsection Status
 
 @enumerate
@@ -824,7 +925,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Formatting
+@node Formatting, Assumptions, Status, Constants
 @subsection Formatting
 
 @enumerate
@@ -854,7 +955,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Assumptions
+@node Assumptions, Datatypes, Formatting, Constants
 @subsection Assumptions
 
 @enumerate
@@ -884,7 +985,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Datatypes
+@node Datatypes, Operators, Constants, Syntax
 @section Datatypes
 
 @menu
@@ -894,12 +995,10 @@ places.
 * Abstractions::
 * Programming::
 * OS::
-* Suffixes::
-* Programming Refs::
 @end menu
 
 @c *********************************************************************
-@node Basics
+@node Basics, Extended Boolean, Datatypes, Datatypes
 @subsection Basics
 
 @enumerate
@@ -937,7 +1036,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Extended Boolean
+@node Extended Boolean, Collections, Basics, Datatypes
 @subsection Extended Boolean
 
 @enumerate
@@ -959,7 +1058,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Collections
+@node Collections, Abstractions, Extended Boolean, Datatypes
 @subsection Collections
 
 @enumerate
@@ -1021,7 +1120,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Abstractions
+@node Abstractions, Programming, Collections, Datatypes
 @subsection Abstractions
 
 @enumerate
@@ -1075,7 +1174,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Programming
+@node Programming, OS, Abstractions, Datatypes
 @subsection Programming
 
 @enumerate
@@ -1121,7 +1220,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node OS
+@node OS, Operators, Programming, Datatypes
 @subsection OS
 
 @enumerate
@@ -1175,142 +1274,19 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Suffixes
-@subsection Suffixes
-
-@enumerate
-@item
-@anchor{numberish}numberish
-
-
-@example
-
-@end example
-
-@item
-@anchor{symbolesque}symbolesque
-
-
-@example
-
-@end example
-
-@item
-@anchor{file (1)}file
-
-
-@example
-
-@end example
-@itemize
-@item
-@end itemize
-
-@item
-@anchor{like}like
-
-
-@example
-
-@end example
-
-@item
-@anchor{lists}lists
-
-
-@example
-
-@end example
-@end enumerate
-
-@c *********************************************************************
-@node Programming Refs
-@subsection Programming Refs
-
-@enumerate
-@item
-@anchor{value}value
-
-
-@example
-
-@end example
-
-@item
-@anchor{name}name
-
-
-@example
-
-@end example
-
-@item
-@anchor{result}result
-
-
-@example
-
-@end example
-
-@item
-@anchor{message}message
-
-
-@example
-
-@end example
-
-@item
-@anchor{field}field
-
-
-@example
-
-@end example
-
-@item
-@anchor{an}an
-
-
-@example
-
-@end example
-
-@item
-@anchor{a}a
-
-
-@example
-
-@end example
-
-@item
-@anchor{the}the
-
-
-@example
-
-@end example
-@end enumerate
-
-@c *********************************************************************
-@node Operators
+@node Operators, Algorithms, Datatypes, Syntax
 @section Operators
 
 @menu
-* Comparison Words 1::
-* Comparison Words 2::
-* Arithmetic Words 1::
-* Arithmetic Words 2::
-* Artihmetic Words 3::
-* Arithmetic Words 4::
-* Logical Words::
-* Arrows Words::
+* Comparison::
+* Mathematical::
+* Logical::
+* Arrows::
 @end menu
 
 @c *********************************************************************
-@node Comparison Words 1
-@subsection Comparison Words 1
+@node Comparison, Mathematical, Operators, Operators
+@subsection Comparison
 
 @enumerate
 @item
@@ -1368,13 +1344,7 @@ places.
 @example
 
 @end example
-@end enumerate
 
-@c *********************************************************************
-@node Comparison Words 2
-@subsection Comparison Words 2
-
-@enumerate
 @item
 @anchor{equal}equal
 
@@ -1425,8 +1395,8 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Arithmetic Words 1
-@subsection Arithmetic Words 1
+@node Mathematical, Logical, Comparison, Operators
+@subsection Mathematical
 
 @enumerate
 @item
@@ -1476,13 +1446,7 @@ places.
 @example
 
 @end example
-@end enumerate
 
-@c *********************************************************************
-@node Arithmetic Words 2
-@subsection Arithmetic Words 2
-
-@enumerate
 @item
 @anchor{add}add
 
@@ -1514,44 +1478,6 @@ places.
 @example
 
 @end example
-@end enumerate
-
-@c *********************************************************************
-@node Artihmetic Words 3
-@subsection Artihmetic Words 3
-
-@enumerate
-@item
-@anchor{take (1)}take
-
-
-@example
-
-@end example
-
-@item
-@anchor{the (1)}the
-
-
-@example
-
-@end example
-
-@item
-@anchor{remainder}remainder
-
-
-@example
-
-@end example
-
-@item
-@anchor{of (1)}of
-
-
-@example
-
-@end example
 
 @item
 @anchor{raised}raised
@@ -1561,20 +1487,6 @@ places.
 
 @end example
 
-@item
-@anchor{to (2)}to
-
-
-@example
-
-@end example
-@end enumerate
-
-@c *********************************************************************
-@node Arithmetic Words 4
-@subsection Arithmetic Words 4
-
-@enumerate
 @item
 @anchor{power}power
 
@@ -1625,8 +1537,8 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Logical Words
-@subsection Logical Words
+@node Logical, Arrows, Mathematical, Operators
+@subsection Logical
 
 @enumerate
 @item
@@ -1671,8 +1583,8 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Arrows Words
-@subsection Arrows Words
+@node Arrows, Algorithms, Logical, Operators
+@subsection Arrows
 
 @enumerate
 @item
@@ -1717,7 +1629,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Algorithms
+@node Algorithms, Punctuation, Operators, Syntax
 @section Algorithms
 
 @menu
@@ -1726,13 +1638,13 @@ places.
 * Statistics::
 * Minimax::
 * Sort::
-* Scan, Grade, Reduce,: Scan Grade Reduce. 
+* Scan Grade Reduce Map::
 * Examinations::
 * Generation::
 @end menu
 
 @c *********************************************************************
-@node Arithmetic
+@node Arithmetic, Advanced Arithmetic, Algorithms, Algorithms
 @subsection Arithmetic
 
 @enumerate
@@ -1778,7 +1690,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Advanced Arithmetic
+@node Advanced Arithmetic, Statistics, Arithmetic, Algorithms
 @subsection Advanced Arithmetic
 
 @enumerate
@@ -1816,7 +1728,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Statistics
+@node Statistics, Minimax, Advanced Arithmetic, Algorithms
 @subsection Statistics
 
 @enumerate
@@ -1862,7 +1774,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Minimax
+@node Minimax, Sort, Statistics, Algorithms
 @subsection Minimax
 
 @enumerate
@@ -1932,7 +1844,7 @@ places.
 @end enumerate
 
 @c *********************************************************************
-@node Sort
+@node Sort, Scan Grade Reduce Map, Minimax, Algorithms
 @subsection Sort
 
 @enumerate
@@ -2011,8 +1923,8 @@ Filter
 @end enumerate
 
 @c *********************************************************************
-@node Scan Grade Reduce
-@subsection Scan, Grade, Reduce,
+@node Scan Grade Reduce Map, Examinations, Sort, Algorithms
+@subsection Scan, Grade, Reduce, and Map
 
 @enumerate
 @item
@@ -2098,7 +2010,7 @@ Map
 @end enumerate
 
 @c *********************************************************************
-@node Examinations
+@node Examinations, Generation, Scan Grade Reduce Map, Algorithms
 @subsection Examinations
 
 @enumerate
@@ -2152,7 +2064,7 @@ Map
 @end enumerate
 
 @c *********************************************************************
-@node Generation
+@node Generation, Punctuation, Examinations, Algorithms
 @subsection Generation
 
 @enumerate
@@ -2174,50 +2086,60 @@ Map
 @end enumerate
 
 @c *********************************************************************
-@node Punctuation
+@node Punctuation, Strings and Characters, Algorithms, Syntax
 @section Punctuation
 
+@menu
+* Period::
+* Colon::
+* Comma::
+* Backtick::
+* Double Quote::
+* Single Quote::
+* Question Mark::
+* Exclamation Point::
+@end menu
+
 @c *********************************************************************
-@node Period
+@node Period, Colon, Punctuation, Punctuation
 @subsection Period
 
 @c *********************************************************************
-@node Colon
+@node Colon, Comma, Period, Punctuation
 @subsection Colon
 
 @c *********************************************************************
-@node Comma
+@node Comma, Backtick, Colon, Punctuation
 @subsection Comma
 
 @c *********************************************************************
-@node Backtick
+@node Backtick, Double Quote, Comma, Punctuation
 @subsection Backtick
 
 @c *********************************************************************
-@node Double Quote
+@node Double Quote, Single Quote, Backtick, Punctuation
 @subsection Double Quote
 
 @c *********************************************************************
-@node Single Quote
+@node Single Quote, Question Mark, Double Quote, Punctuation
 @subsection Single Quote
 
 @c *********************************************************************
-@node Question Mark
+@node Question Mark, Exclamation Point, Single Quote, Punctuation
 @subsection Question Mark
 
 @c *********************************************************************
-@node Exclamation Point
-@subsection Double Quote
-
+@node Exclamation Point, Strings and Characters, Question Mark, Punctuation
+@subsection Exclamation Point
 
 @c *********************************************************************
-@node Strings and Characters
+@node Strings and Characters, Numbers and Ratios, Punctuation, Syntax
 @section Strings and Characters
 
 @c *********************************************************************
-@node Numbers and Ratios
+@node Numbers and Ratios, Names, Strings and Characters, Syntax
 @section Numbers and Ratios
 
 @c *********************************************************************
-@node Names
+@node Names, Other Uses, Numbers and Ratios, Syntax
 @section Names

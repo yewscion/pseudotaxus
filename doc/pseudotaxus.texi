@@ -115,7 +115,7 @@ at lease for myself.
 @section A Simple Example
 
 @c *********************************************************************
-@node A Longer Example, Concept Index, A Simple Example, Introduction
+@node A Longer Example, Syntax, A Simple Example, Introduction
 @section A Longer Example
 
 @include syntax.texi
@@ -152,7 +152,7 @@ at lease for myself.
 @section Pseudarils
 
 @c *********************************************************************
-@node Concept Index, Programming Index, Introduction, Top
+@node Concept Index, Programming Index, Pseudarils, Top
 @chapter Concept Index
 @printindex cp
 
