@@ -47,6 +47,9 @@ This document describes Pseudotaxus version @value{VERSION}.
 @menu
 * Introduction::                Why Pseudotaxus?
 
+* Syntax::                      An Overview of the Syntax.
+* Other Uses::                  Everything Else in Pseudotaxus.
+
 * Concept Index::               Concepts Used, and Where.
 * Programming Index::           Functions, Variables, Etc.
 
@@ -58,23 +61,134 @@ This document describes Pseudotaxus version @value{VERSION}.
 
 Introduction
 @c add other sections with subsections as above.
+@c                              .
+* A Simple Example::            Getting Stated with a single definition.
+* A Longer Example::            To show off some of the more complex features.
+
+Syntax
+
+* Keywords::                    Each Recognized Keyword.
+* Constants::                   Each Recognized Constant.
+* Datatypes::                   Each Recognized Datatype.
+* Operators::                   Each Recognized Operator.
+* Algorithms::                  Each Recognized Algorithm.
+* Punctuation::                 All Recognized Punctuation.
+* Strings and Characters::      Dealing With Char Literals.
+* Numbers::                     Dealing With Numeric Literals.
+* Names::                       Referring to Other Definitons.
+
+Other Uses
+
+* Grafting::                    Turning Pseudocode Into Comments.
+* Pruning::                     Decompile Algorithms into Longer Code.
+* Pleaching::                   Compile Code into Shorter Algorithms.
+* Arils::                       Convert Procedures Into Algorithms.
+* Pseudarils::                  Convert Procedures Into Boilerplate.
 
 @end detailmenu
 @end menu
 
 @c *********************************************************************
-@node Introduction, Concept Index, Top, Top
+@node Introduction, A Simple Example, Top, Top
 @chapter Introduction
 
-The purpose of this library is .
+Pseudotaxus is the result of me wanting a better, more defined dialect of
+pseudocode and deciding to build one myself.
 
-It was started when .
+It was started when I needed to plan out software using pseudocode as an
+undergraduate student, and at work. I found myself very dissatisfied with the
+"Just write it out like normal speech" approach, and wanted something with a
+bit more structure to it.
 
-The hope is that .
+The hope is that it will become a useful planning tool for software projects,
+at lease for myself.
 
 @menu
 
+* A Simple Example:: Getting Stated with a single definition.
+* A Longer Example:: To show off some of the more complex features.
+
 @end menu
+
+@c *********************************************************************
+@node A Simple Example, A Longer Example, Introduction, Introduction
+@section A Simple Example
+
+@c *********************************************************************
+@node A Longer Example, Concept Index, A Simple Example, Introduction
+@section A Longer Example
+
+@c *********************************************************************
+@node Syntax, Keywords, A Longer Example, Top
+@chapter Syntax
+
+Syntax is the name of the game here. 
+
+@menu
+* Keywords::                    Each Recognized Keyword.
+* Constants::                   Each Recognized Constant.
+* Datatypes::                   Each Recognized Datatype.
+* Operators::                   Each Recognized Operator.
+* Algorithms::                  Each Recognized Algorithm.
+* Punctuation::                 All Recognized Punctuation.
+* Strings and Characters::      Dealing With Char Literals.
+* Numbers::                     Dealing With Numeric Literals.
+* Names::                       Referring to Other Definitons.
+@end menu
+@c *********************************************************************
+@node Keywords, Constants, Syntax, Syntax
+@section Keywords
+@c *********************************************************************
+@node Constants, Datatypes, Keywords, Syntax
+@section Constants
+@c *********************************************************************
+@node Datatypes, Operators, Constants, Syntax
+@section Datatypes
+@c *********************************************************************
+@node Operators, Algorithms, Datatypes, Syntax
+@section Operators
+@c *********************************************************************
+@node Algorithms, Punctuation, Operators, Syntax
+@section Algorithms
+@c *********************************************************************
+@node Punctuation, Strings and Characters, Algorithms, Syntax
+@section Punctuation
+@c *********************************************************************
+@node Strings and Characters, Numbers, Punctuation, Syntax
+@section Strings and Characters
+@c *********************************************************************
+@node Numbers, Names, Strings and Characters, Syntax
+@section Numbers
+@c *********************************************************************
+@node Names, Other Uses, Numbers, Syntax
+@section Names
+@c *********************************************************************
+@node Other Uses, Grafting, Names, Top
+@chapter Other Uses
+
+@menu
+* Grafting::                    Turning Pseudocode Into Comments.
+* Pruning::                     Decompile Algorithms into Simpler Code.
+* Pleaching::                   Compile Code into Shorter Algorithms.
+* Arils::                       Convert Procedures Into Algorithms.
+* Pseudarils::                  Convert Procedures Into Boilerplate.
+@end menu
+@c *********************************************************************
+@node Grafting, Pruning, Other Uses, Other Uses
+@section Grafting
+@c *********************************************************************
+@node Pruning, Pleaching, Grafting, Other Uses
+@section Pruning
+@c *********************************************************************
+@node Pleaching, Arils, Pruning, Other Uses
+@section Pleaching
+@c *********************************************************************
+@node Arils, Pseudarils, Pleaching, Other Uses
+@section Arils
+@c *********************************************************************
+@node Pseudarils, Concept Index, Arils, Other Uses
+@section Pseudarils
+
 
 @c *********************************************************************
 @node Concept Index, Programming Index, Introduction, Top
