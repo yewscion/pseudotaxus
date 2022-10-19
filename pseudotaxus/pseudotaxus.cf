@@ -2,14 +2,23 @@ token Var (upper (letter | digit)+);
 token Proc {"["} (letter)+ {"]"};
 terminator Stm ".";
 terminator Exp "";
-Fun. Function ::= [Stm];
+separator Exp ",";
+separator Stm ",";
 SExp.  Stm ::= Keyword [Exp];
+SCompound. Stm ::= Keyword [Exp] Keyword [Exp];
+SBegin. Stm3 ::= "begin" Proc;
+SEnd. Stm3 ::= "end" Proc;
 -- SKey.  Stm ::= Keyword;
 
 EVar.  Exp ::= Var;
 EProc.  Exp ::= Proc;
 EStr. Exp ::= String;
 EKey. Exp3 ::= Keyword;
+EOp. Exp3 ::= Operator;
+EType. Exp3 ::= DataType;
+EConst. Exp3 ::= Constant;
+EInt. Exp2 ::= Integer;
+EDoub. Exp2 ::= Double;
 ERead. Exp1 ::= "read" Var "from" Constant;
 
 rules Keyword ::=
@@ -38,7 +47,10 @@ rules Keyword ::=
 -- Selectors
 "this" | "that" | "except" | "in" | "at" | "with" | "without" | "aside" |
 -- Type Ops
-"convert" | "cast" | "ensure" | "expecting" | "expect";               
+"convert" | "cast" | "ensure" | "expecting" | "expect" |
+-- Begin and End and Comma
+"begin" | "end" | "," | ":";
+
 rules Constant ::=
 -- Booleans
 "true" | "false" |
@@ -57,6 +69,7 @@ rules DataType ::=
 "truthy" | "falsey" |
 -- Collections
 "list" | "array" | "sequence" | "every" | "each" | "member" | "index" |
+"arraylist" |
 -- Abstractions
 "nothing" | "maybe" | "symbol" | "many" | "any" | "object" |
 -- Programming
@@ -65,9 +78,40 @@ rules DataType ::=
 "file" | "stream" | "pipe" | "port" | "line" | "interrupt" |
 -- Programming Refs
 "value" | "name" | "result" | "message" | "field" | "an" | "a" | "the" |
--- Suffixes
-DataType "-y" | DataType "-ish" | DataType "-esque" | DataType "s";
-rules Operators ::=
+-- Plural Basics
+"numbers" | "strings" | "characters" | "booleans" |
+-- Plural Collections
+"lists" | "arrays" | "sequences" | "members" | "indices" |
+-- Plural Abstractions
+"nothings" | "maybes" | "symbols" | "objects" |
+-- Plural Programming
+"constants" | "operators" | "procedures" | "arguments" | "parameters" |
+-- Plural OS
+"files" | "streams" | "pipes" | "ports" | "lines" | "interrupts" |
+-- Plural Programming Refs
+"values" | "names" | "results" | "messages" | "fields" |
+-- Imprecise Basics
+"numberish" | "numbery" | "stringish" | "stringy" | "characterish" |
+"charactery" | "booleanish" | "booleany" |
+-- Imprecise Collections
+"listish" | "listy" | "arrayish" | "array-y" | "sequenceish" |
+"sequencey" | "memberish" | "membery" | "indexish" | "indexy" |
+-- Imprecise Abstractions
+"nothingish" | "nothingy" | "maybeish" | "maybe-y" | "symbolish" |
+"symboly" | "objectish" | "objecty" |
+-- Imprecise Programming
+"constantish" | "constanty" | "operatorish" | "operatory" |
+"procedureish" | "procedurey" | "argumentish" | "argumenty" |
+"parameterish" | "parametery" |
+-- Imprecise OS
+"fileish" | "filey" | "streamish" | "streamy" | "pipeish" |
+"pipey" | "portish" | "porty" | "lineish" | "liney" |
+"interruptish" | "interrupty" |
+-- Imprecise Programming Refs
+"valueish" | "valuey" | "nameish" | "namey" | "resultish" |
+"resulty" | "messageish" | "messagey" | "fieldish" | "fieldy";
+
+rules Operator ::=
 -- Comparison 1
 ">" | "<" | "==" | "!=" | "<>" | "<=" | ">=" | "=" |
 -- Comparison 2
@@ -98,5 +142,6 @@ rules Operators ::=
 
 
 coercions Exp 4;
+coercions Stm 4;
 comment ";";
 comment "/*" "*/";

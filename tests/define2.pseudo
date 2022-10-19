@@ -1,0 +1,7 @@
+begin [Definition].
+      take Test1, Test2, Test3 as arguments,
+      expecting a number, a number, and a string.
+      for each of the arguments:
+          display the argument.
+      end for.
+end [Definition].

@@ -1,8 +1,4 @@
-[Test].
-[Function].
-[Test].
----
-[Test].
-[Function].
-[Test].
+begin [Test].
+      display "String".
+end [Test].
 

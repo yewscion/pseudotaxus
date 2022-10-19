@@ -1,0 +1,82 @@
+begin [Constructor].
+
+      set object -> Make = "".
+      set object -> Model = "".
+      set object -> Color = "".
+      set object -> Year = 0.
+      set object -> Mileage = 0.
+end [Constructor].
+
+begin [ParamConstructor],
+        with parameters Make and Model and Color and Year and Mileage,
+             expecting a string, a string, a string, a number, and a number.
+             
+      call [addNewVehicle],
+           with arguments this -> Make and this -> Model and this -> Color,
+                     and this -> Year and this ->Mileage.
+end [ParamConstructor].
+
+begin [addNewVehicle],
+      with parameters Make and Model and Color and Year and Mileage,
+           expecting a string, a string, a string, a number, and a number.
+      
+      call [removeVehicle].
+      call [updateVehicle],
+           with arguments "make" and this -> Make.
+      call [updateVehicle],
+           with arguments "model" and this -> Model.
+      call [updateVehicle],
+           with arguments "color" and this -> Color.
+      call [updateVehicle],
+           with arguments "year" and this -> Year.
+      call [updateVehicle],
+           with arguments "mileage" and this -> Mileage.
+      return true if each call is true, otherwise return false.
+end [addNewVehicle].
+
+begin [removeVehicle].
+
+      call [updateVehicle],
+           with arguments "make" and "".
+      call [updateVehicle],
+           with arguments "model" and "".
+      call [updateVehicle],
+           with arguments "color" and "".
+      call [updateVehicle],
+           with arguments "year" and "".
+      call [updateVehicle],
+           with arguments "mileage" and "".
+      return "Success."
+end [removeVehicle].
+
+begin [updateVehicle], with parameters Key and Value.
+      if Key == "make" then:
+         set object -> Make = Value.
+         return true.
+      else if Key == "model" then:
+         set object -> Model = Value.
+         return true.
+      else if Key == "color" then:
+         set object -> Color = Value.
+         return true.
+      else if Key == "year" then:
+         set object -> Year = Value.
+         return true.
+      else if Key == "mileage" then:
+         set object -> Mileage = Value.
+         return true.
+      else:
+         print "Could not find that field.".
+         return false.
+end [updateVehicle].
+
+begin [listInformation].
+
+      let Result be an arraylist of strings.
+      append object -> Make to Result as a string.
+      append object -> Model to Result as a string.
+      append object -> Color to Result as a string.
+      append object -> Year to Result as a string.
+      append object -> Mileage to Result as a string.
+      return Result.
+end [listInformation].
