@@ -271,42 +271,97 @@ end [Procedure].
 @enumerate
 @item
 @anchor{print}print
+The @code{print} keyword is the basic output keyword.
 
+It expects any number of printable@footnote{In Pseudotaxus, a "printable"
+argument can be anything, really, as in a conceptual way everything has a
+printable representation: procedures have listings, structures have a written
+structure, and abstract concepts generally have a representation within the
+context of a computing system.
+
+The "printable" designation is therefore mostly a reminder that this will be
+shown and not run, and this kind of distinction is really only carried over
+into homoiconic languages, such as lisp. In non-homoiconic destination
+languages, this kind of generalization requires much more work on the
+programming side, as new variables need to be populated when printing a
+procedure or an object.} right arguments, followed by the @code{to} keyword
+(@pxref{to}) and one of the @code{assumption} constants
+(@pxref{Assumptions}).
 
 @example
-
+begin [Procedure].
+      print "Hello World!" to screen.
+      print newline to screen.
+      print [Procedure] to file.
+end [Procedure].
 @end example
 
 @item
 @anchor{display}display
 
+The @code{display} keyword is a synonym for @code{print}, with the assumption
+of printing the right arguments to the screen, for the user to see. This
+includes processing escapes, but does not include pretty-printing.
 
 @example
-
+begin [Procedure].
+      display "Hello World!", newline.
+end [Procedure].
 @end example
 
 @item
 @anchor{show}show
 
+The @code{display} keyword is a synonym for @code{print}, with the assumption
+of printing the arguments in a pretty-printed or formatted way, in a similar
+way to how one might use the @code{format} or @code{printf} functions.
+
+Note that this does @emph{not} imply printing to the screen, for the
+user. The @code{to} keyword is still expected.
 
 @example
-
+begin [Procedure].
+      show "First: ", Variable1, " Second: ", Variable2, to screen.
+end [Procedure].
 @end example
 
 @item
 @anchor{save}save
 
+The @code{save} keyword is a synonym for @code{print}, with the assumption of
+printing the right arguments to a file (possibly unspecified, as this is
+pseudocode) in persistent storage.
+
+To specify the file, the name @code{File} is customary to use as a local
+binding. Each block can set this name, or it can be passed in as a
+parameter. Using a global variable for this purpose is, like all globals,
+considered a Girdling.
+
+The writeout mode is unspecified by default, as this is pseudocode. To
+specify this, use a comment after the above @code{File} designation.
 
 @example
-
+begin [Procedure].
+      let File be the file at "./foo.txt".
+      save "Hello World!", newline.
+end [Procedure].
 @end example
 
 @item
 @anchor{return}return
 
+The @code{return} keyword allows the value in question to be substituted
+directly in the program for the current procedure, as it does in many
+programming languages: It exits the current block, returning the given value.
+
+It expects a single right argument, which can be a constant, a keyword, a
+procedure, a name, a datatype, or any other kind of value. This is followed
+by a period, and a newline.
 
 @example
-
+begin [Procedure].
+      return true.
+end [Procedure].
 @end example
 @end enumerate
 
