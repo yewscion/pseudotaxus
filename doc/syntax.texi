@@ -62,16 +62,18 @@ actions.
 @subsection Procedure Definition
 @cindex Defining a Procedure
 
+We are building programs here.
+
+Programs are, in one view, simply collections of procedures that are executed
+in an order on a machine. These keywords are how procedures are made.
+
 @enumerate
 @item
 @anchor{begin}begin
 @findex begin
 @cindex Starting a Procedure
 
-We are building programs here.
-
-Programs are, in one view, simply collections of procedures that are executed
-in an order on a machine. This keyword is how one can begin a new procedure.
+This keyword is how one can begin a new procedure.
 
 It expects a single right argument: A name for the procedure. This is
 followed by a period, and a newline.
