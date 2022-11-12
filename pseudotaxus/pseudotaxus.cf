@@ -19,6 +19,7 @@ EType. Exp3 ::= DataType;
 EConst. Exp3 ::= Constant;
 EInt. Exp2 ::= Integer;
 EDoub. Exp2 ::= Double;
+EAlgo. Exp4 ::= Algorithm;
 ERead. Exp1 ::= "read" Var "from" Constant;
 
 rules Keyword ::=
@@ -139,6 +140,20 @@ rules Operator ::=
 -- Arrows Words 3
 "taken from" | "stored in";
 
+rules Algorithm ::=
+-- Arithmetic
+"sum" | "difference" | "product" | "quotient" | "remainder" | "modulus" |
+"sign" | "reciprocal" | "magnitude" | "logarithm" |
+-- Statistics
+"average" | "mean" | "median" | "mode" | "range" |
+-- Extrema
+"max" | "maximum" | "min" | "minimum" | "maxima" | "minima" | "ceiling" | "floor" |
+-- Search Sort Filter
+"sort" | "reverse" | "search" | "find" | "filter in" | "filter out" |
+-- Grade Scan Map Reduce
+"grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" | "replicate" |
+-- Membership
+"depth" | "match" | "tally" | "enlist" | "membership" | "index of" | "iota";
 
 
 coercions Exp 4;
