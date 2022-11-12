@@ -37,7 +37,8 @@ EXTRA_DIST =  Changelog.md \
               guix.scm \
               doc/version.texi.in \
               doc/fdl-1.3.texi \
-              doc/procedure-types.texi
+              doc/procedure-types.texi \
+	      doc/syntax.texi
 
 BNFC_SOURCE = $(srcdir)/pseudotaxus/pseudotaxus.cf
 
