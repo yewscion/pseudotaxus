@@ -153,7 +153,7 @@ rules Algorithm ::=
 -- Grade Scan Map Reduce
 "grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" | "replicate" |
 -- Membership
-"depth" | "match" | "tally" | "enlist" | "membership" | "index of" | "iota";
+"depth" | "match" | "tally" | "enlist" | "membership" | "indexing" | "iota";
 
 
 coercions Exp 4;
