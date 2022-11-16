@@ -27,7 +27,7 @@
                                      ".tar.bz2")))
   (build-system gnu-build-system)
   (arguments
-   `(#:tests? #f
+   `(#:out-of-source? #t
      ;; #:phases
      ;; (modify-phases
      ;;     %standard-phases)
