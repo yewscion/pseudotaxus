@@ -44,13 +44,17 @@ rules Keyword ::=
 -- For
 "for" | "endfor" |
 -- Program Flow
-"call" | "exception" | "as" | "recurse" |
+"call" | "exception" | "as" | "recurse" | "on" |
 -- Selectors
 "this" | "that" | "except" | "in" | "at" | "with" | "without" | "aside" |
 -- Type Ops
 "convert" | "cast" | "ensure" | "expecting" | "expect" |
 -- Begin and End and Comma
-"begin" | "end" | "," | ":";
+"begin" | "end" | "," | ":" |
+-- Structure Ops
+"where" | "containing" |
+-- Uncertainty
+"either";
 
 rules Constant ::=
 -- Booleans
@@ -79,6 +83,8 @@ rules DataType ::=
 "file" | "stream" | "pipe" | "port" | "line" | "interrupt" |
 -- Programming Refs
 "value" | "name" | "result" | "message" | "field" | "an" | "a" | "the" |
+-- Structures
+"structure" |
 -- Plural Basics
 "numbers" | "strings" | "characters" | "booleans" |
 -- Plural Collections
@@ -91,6 +97,8 @@ rules DataType ::=
 "files" | "streams" | "pipes" | "ports" | "lines" | "interrupts" |
 -- Plural Programming Refs
 "values" | "names" | "results" | "messages" | "fields" |
+-- Plural Structures
+"structures" |
 -- Imprecise Basics
 "numberish" | "numbery" | "stringish" | "stringy" | "characterish" |
 "charactery" | "booleanish" | "booleany" |
@@ -110,7 +118,9 @@ rules DataType ::=
 "interruptish" | "interrupty" |
 -- Imprecise Programming Refs
 "valueish" | "valuey" | "nameish" | "namey" | "resultish" |
-"resulty" | "messageish" | "messagey" | "fieldish" | "fieldy";
+"resulty" | "messageish" | "messagey" | "fieldish" | "fieldy" |
+-- Imprecise Structures
+"structurish" | "structury";
 
 rules Operator ::=
 -- Comparison 1
@@ -153,7 +163,7 @@ rules Algorithm ::=
 -- Grade Scan Map Reduce
 "grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" | "replicate" |
 -- Membership
-"depth" | "match" | "tally" | "enlist" | "membership" | "indexing" | "iota";
+"depth" | "match" | "tally" | "enlist" | "membership" | "pick" | "iota";
 
 
 coercions Exp 4;
