@@ -8,7 +8,7 @@ begin [Constructor].
 end [Constructor].
 
 begin [ParamConstructor].
-        take parameters Make and Model and Color and Year and Mileage,
+        expect parameters Make and Model and Color and Year and Mileage,
              expecting a string, a string, a string, a number, and a number.
              
       call [addNewVehicle],
@@ -17,7 +17,7 @@ begin [ParamConstructor].
 end [ParamConstructor].
 
 begin [addNewVehicle].
-      take parameters Make and Model and Color and Year and Mileage,
+      expect parameters Make and Model and Color and Year and Mileage,
            expecting a string, a string, a string, a number, and a number.
       
       call [removeVehicle].
@@ -50,7 +50,7 @@ begin [removeVehicle].
 end [removeVehicle].
 
 begin [updateVehicle].
-      take parameters Key and Value.
+      expect parameters Key and Value.
       if Key == "make" then:
          set object -> Make = Value.
          return true.
