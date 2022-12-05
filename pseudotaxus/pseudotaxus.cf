@@ -24,7 +24,7 @@ ERead. Exp1 ::= "read" Var "from" Constant;
 
 rules Keyword ::=
 -- Input
-"read" | "obtain" | "get" | "from" | "take" | "use" | "copy" |
+"read" | "obtain" | "get" | "from" | "use" | "copy" | "expect" |
 -- Output
 "print" | "display" | "show" | "save" | "return" |
 -- Compute
@@ -44,11 +44,11 @@ rules Keyword ::=
 -- For
 "for" | "endfor" |
 -- Program Flow
-"call" | "exception" | "as" | "recurse" | "on" |
+"call" | "calling" | "exception" | "as" | "recurse" | "on" |
 -- Selectors
 "this" | "that" | "except" | "in" | "at" | "with" | "without" | "aside" |
 -- Type Ops
-"convert" | "cast" | "ensure" | "expecting" | "expect" |
+"convert" | "cast" | "ensure" | "expecting" | 
 -- Begin and End and Comma
 "begin" | "end" | "," | ":" |
 -- Structure Ops
@@ -163,7 +163,8 @@ rules Algorithm ::=
 -- Grade Scan Map Reduce
 "grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" | "replicate" |
 -- Membership
-"depth" | "match" | "tally" | "enlist" | "membership" | "pick" | "iota";
+"depth" | "match" | "tally" | "enlist" | "membership" | "pick" | "drop" |
+"take" | "iota";
 
 
 coercions Exp 4;
