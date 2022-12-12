@@ -28,7 +28,7 @@ rules Keyword ::=
 -- Output
 "print" | "display" | "show" | "save" | "return" |
 -- Compute
-"compute" | "calculate" | "determine" | "append" | "to" | "over" |
+"compute" | "execute" | "calculate" | "determine" | "append" | "to" | "over" |
 -- Initialize
 "set" | "initialize" | "init" | "let" | "is" | "has" | "contains" | "be" |
 -- Deviation
@@ -49,8 +49,8 @@ rules Keyword ::=
 "this" | "that" | "except" | "in" | "at" | "with" | "without" | "aside" |
 -- Type Ops
 "convert" | "cast" | "ensure" | "expecting" | 
--- Begin and End and Comma
-"begin" | "end" | "," | ":" |
+-- Definition
+"begin" | "end" | "rhizome" | "," | ":" |
 -- Structure Ops
 "where" | "containing" |
 -- Uncertainty
@@ -66,15 +66,16 @@ rules Constant ::=
 -- Formatting
 "newline" | "beep" | "indent" |
 -- Assumptions
-"user" | "screen" | "system";
+"user" | "screen" | "system" |
+-- Types of Procedures
+"datum" | "data" | "caclulation" | "calculations" | "action" | "actions";
 rules DataType ::=
 -- Basics
-"number" | "string" | "character" | "boolean" |
+"number" | "word" | "phrase" | "item" | "identifier" |
 -- Extended Boolean
 "truthy" | "falsey" |
 -- Collections
-"list" | "array" | "sequence" | "every" | "each" | "member" | "index" |
-"arraylist" |
+"sequence" | "every" | "each" | "member" | "index" |
 -- Abstractions
 "nothing" | "maybe" | "symbol" | "many" | "any" | "object" |
 -- Programming
@@ -83,12 +84,30 @@ rules DataType ::=
 "file" | "stream" | "pipe" | "port" | "line" | "interrupt" |
 -- Programming Refs
 "value" | "name" | "result" | "message" | "field" | "an" | "a" | "the" |
--- Structures
-"structure" |
+-- Primitive Types
+"integer" | "character" | "boolean" | "floating-point" | "fixed-point" |
+"pointer" | "reference" | "enum" | "enumeration" |
+-- Composite Types
+"structure" | "array" | "record" | "tuple" | "string" | "union" | "variant" |
+"coproduct" | "t-union" | "sum-type" | "product-type" |
+-- Abstract Data Types
+"list" | "set" | "suite" | "stack" | "queue" | "tree" |
+"graph" | "heap" | "grid" | "hash-map" |
+-- Concrete Data Types
+"priority-queue" | "binary-tree" | "quad-tree" | "cons-list" |
+"doubly-linked-list" | "k-d-tree" | "skip-list" | "linked-list" | "matrix" |
+"lookup-table" | "bit-array" | "variable-length-array" | "dynamic-array" |
+"gap-buffer" | "zipper" | "b-tree" | "binary-search-tree" | "b-plus-tree" |
+"binary-heap" | "binomial-heap" | "radix-tree" | "suffix-tree" |
+"ternary-tree" | "m-ary-tree" | "k-ary-tree" | "and-or-tree" | "spqr-tree" |
+"in-tree" | "segment-tree" | "range-tree" | "bin" | "finger-tree" |
+"bloom-filter" | "count-min-sketch" | "adjacency-list" | "adjacency-matrix" |
+"decision-tree" | "directed-graph" | "undirected-graph" | "forest" |
+"link-cut-tree" | "dynamic-tree" | "array-list" | "a-list" |
 -- Plural Basics
-"numbers" | "strings" | "characters" | "booleans" |
+"numbers" | "words" | "phrases" | "items" | "identifiers" |
 -- Plural Collections
-"lists" | "arrays" | "sequences" | "members" | "indices" |
+"sequences" | "members" | "indices" |
 -- Plural Abstractions
 "nothings" | "maybes" | "symbols" | "objects" |
 -- Plural Programming
@@ -97,8 +116,27 @@ rules DataType ::=
 "files" | "streams" | "pipes" | "ports" | "lines" | "interrupts" |
 -- Plural Programming Refs
 "values" | "names" | "results" | "messages" | "fields" |
--- Plural Structures
-"structures" |
+-- Plural Primitive Types
+"integers" | "characters" | "booleans" | "floating-points" | "fixed-points" |
+"pointers" | "references" | "enums" | "enumerations" |
+-- Plural Composite Types
+"structures" | "arrays" | "records" | "tuples" | "strings" | "unions" |
+"variants" | "coproducts" | "t-unions" | "sum-types" | "product-types" |
+-- Plural Abstract Data Types
+"lists" | "sets" | "suites" | "stacks" | "queues" | "trees" |
+"graphs" | "heaps" | "grids" | "hash-maps" |
+-- Plural Concrete Data Types
+"priority-queues" | "binary-trees" | "quad-trees" | "cons-lists" |
+"doubly-linked-lists" | "k-d-trees" | "skip-lists" | "linked-lists" |
+"matrices" | "lookup-tables" | "bit-arrays" | "variable-length-arrays" |
+"dynamic-arrays" | "gap-buffers" | "zippers" | "b-trees" |
+"binary-search-trees" | "b-plus-trees" | "binary-heaps" | "binomial-heaps" |
+"radix-trees" | "suffix-trees" | "ternary-trees" | "m-ary-trees" |
+"k-ary-trees" | "and-or-trees" | "spqr-trees" | "in-trees" | "segment-trees" |
+"range-trees" | "bins" | "finger-trees" | "bloom-filters" |
+"count-min-sketches" | "adjacency-lists" | "adjacency-matrices" |
+"decision-trees" | "directed-graphs" | "undirected-graphs" | "forests" |
+"link-cut-trees" | "dynamic-trees" | "array-lists" | "a-lists" |
 -- Imprecise Basics
 "numberish" | "numbery" | "stringish" | "stringy" | "characterish" |
 "charactery" | "booleanish" | "booleany" |
@@ -115,12 +153,7 @@ rules DataType ::=
 -- Imprecise OS
 "fileish" | "filey" | "streamish" | "streamy" | "pipeish" |
 "pipey" | "portish" | "porty" | "lineish" | "liney" |
-"interruptish" | "interrupty" |
--- Imprecise Programming Refs
-"valueish" | "valuey" | "nameish" | "namey" | "resultish" |
-"resulty" | "messageish" | "messagey" | "fieldish" | "fieldy" |
--- Imprecise Structures
-"structurish" | "structury";
+"interruptish" | "interrupty";
 
 rules Operator ::=
 -- Comparison 1
@@ -157,11 +190,13 @@ rules Algorithm ::=
 -- Statistics
 "average" | "mean" | "median" | "mode" | "range" |
 -- Extrema
-"max" | "maximum" | "min" | "minimum" | "maxima" | "minima" | "ceiling" | "floor" |
+"max" | "maximum" | "min" | "minimum" | "maxima" | "minima" | "ceiling" |
+"floor" |
 -- Search Sort Filter
 "sort" | "reverse" | "search" | "find" | "filter in" | "filter out" |
 -- Grade Scan Map Reduce
-"grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" | "replicate" |
+"grade up" | "grade down" | "scan" | "map" | "reduce" | "expand" |
+"replicate" |
 -- Membership
 "depth" | "match" | "tally" | "enlist" | "membership" | "pick" | "drop" |
 "take" | "iota";
