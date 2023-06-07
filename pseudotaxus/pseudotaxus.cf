@@ -64,7 +64,7 @@ rules Constant ::=
 -- Status
 "success" | "failure" | "succeeds" | "fails" | "found" |
 -- Formatting
-"newline" | "beep" | "indent" |
+"newline" | "beep" | "indent" | "flash" |
 -- Assumptions
 "user" | "screen" | "system" |
 -- Types of Procedures
@@ -72,6 +72,8 @@ rules Constant ::=
 rules DataType ::=
 -- Basics
 "number" | "word" | "phrase" | "item" | "identifier" |
+-- Humanity
+"date" | "time" | "datetime" | "currency" | "ratio" |  "percentage" |
 -- Extended Boolean
 "truthy" | "falsey" |
 -- Collections
